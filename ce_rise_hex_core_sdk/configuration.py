@@ -1,7 +1,7 @@
 # coding: utf-8
 
 """
-    CE-RISE Hexagonal Core Service API
+    CE-RISE Hex Core Service API
 
     Public and admin API for validating, creating, and querying records against versioned CE-RISE model artifacts.
 
@@ -504,7 +504,7 @@ class Configuration:
                "OS: {env}\n"\
                "Python Version: {pyversion}\n"\
                "Version of the API: 0.0.1\n"\
-               "SDK Package Version: 0.0.0.dev136".\
+               "SDK Package Version: 0.0.0.dev143".\
                format(env=sys.platform, pyversion=sys.version)
 
     def get_host_settings(self) -> List[HostSetting]:

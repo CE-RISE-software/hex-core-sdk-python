@@ -3,7 +3,7 @@
 # flake8: noqa
 
 """
-    CE-RISE Hexagonal Core Service API
+    CE-RISE Hex Core Service API
 
     Public and admin API for validating, creating, and querying records against versioned CE-RISE model artifacts.
 
@@ -14,7 +14,7 @@
 """  # noqa: E501
 
 
-__version__ = "0.0.0.dev136"
+__version__ = "0.0.0.dev143"
 
 # import apis into sdk package
 from ce_rise_hex_core_sdk.api.admin_api import AdminApi
