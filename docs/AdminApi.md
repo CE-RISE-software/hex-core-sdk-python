@@ -1,6 +1,6 @@
 # ce_rise_hex_core_sdk.AdminApi
 
-All URIs are relative to *http://localhost*
+All URIs are relative to *http://localhost:8080*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -26,10 +26,10 @@ from ce_rise_hex_core_sdk.models.health_response import HealthResponse
 from ce_rise_hex_core_sdk.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost
+# Defining the host is optional and defaults to http://localhost:8080
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ce_rise_hex_core_sdk.Configuration(
-    host = "http://localhost"
+    host = "http://localhost:8080"
 )
 
 
@@ -89,10 +89,10 @@ import ce_rise_hex_core_sdk
 from ce_rise_hex_core_sdk.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost
+# Defining the host is optional and defaults to http://localhost:8080
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ce_rise_hex_core_sdk.Configuration(
-    host = "http://localhost"
+    host = "http://localhost:8080"
 )
 
 
@@ -154,10 +154,10 @@ from ce_rise_hex_core_sdk.models.ready_response import ReadyResponse
 from ce_rise_hex_core_sdk.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost
+# Defining the host is optional and defaults to http://localhost:8080
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ce_rise_hex_core_sdk.Configuration(
-    host = "http://localhost"
+    host = "http://localhost:8080"
 )
 
 
@@ -219,10 +219,10 @@ import ce_rise_hex_core_sdk
 from ce_rise_hex_core_sdk.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost
+# Defining the host is optional and defaults to http://localhost:8080
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ce_rise_hex_core_sdk.Configuration(
-    host = "http://localhost"
+    host = "http://localhost:8080"
 )
 
 # The client must configure the authentication and authorization parameters
