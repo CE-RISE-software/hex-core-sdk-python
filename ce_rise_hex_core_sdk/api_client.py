@@ -1,7 +1,7 @@
 # coding: utf-8
 
 """
-    CE-RISE Hexagonal Core Service API
+    CE-RISE Hex Core Service API
 
     Public and admin API for validating, creating, and querying records against versioned CE-RISE model artifacts.
 
@@ -90,7 +90,7 @@ class ApiClient:
             self.default_headers[header_name] = header_value
         self.cookie = cookie
         # Set default User-Agent.
-        self.user_agent = 'OpenAPI-Generator/0.0.0.dev157/python'
+        self.user_agent = 'OpenAPI-Generator/0.0.0.dev203/python'
         self.client_side_validation = configuration.client_side_validation
 
     def __enter__(self):

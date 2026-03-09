@@ -1,6 +1,6 @@
 # ce_rise_hex_core_sdk.ModelsApi
 
-All URIs are relative to *http://localhost*
+All URIs are relative to *http://localhost:8080*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -27,10 +27,10 @@ from ce_rise_hex_core_sdk.models.record import Record
 from ce_rise_hex_core_sdk.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost
+# Defining the host is optional and defaults to http://localhost:8080
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ce_rise_hex_core_sdk.Configuration(
-    host = "http://localhost"
+    host = "http://localhost:8080"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -115,10 +115,10 @@ from ce_rise_hex_core_sdk.models.query_response import QueryResponse
 from ce_rise_hex_core_sdk.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost
+# Defining the host is optional and defaults to http://localhost:8080
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ce_rise_hex_core_sdk.Configuration(
-    host = "http://localhost"
+    host = "http://localhost:8080"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -200,10 +200,10 @@ from ce_rise_hex_core_sdk.models.validation_report import ValidationReport
 from ce_rise_hex_core_sdk.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost
+# Defining the host is optional and defaults to http://localhost:8080
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ce_rise_hex_core_sdk.Configuration(
-    host = "http://localhost"
+    host = "http://localhost:8080"
 )
 
 # The client must configure the authentication and authorization parameters

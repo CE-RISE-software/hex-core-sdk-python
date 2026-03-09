@@ -1,6 +1,6 @@
 # ce_rise_hex_core_sdk.DiscoveryApi
 
-All URIs are relative to *http://localhost*
+All URIs are relative to *http://localhost:8080*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -23,10 +23,10 @@ from ce_rise_hex_core_sdk.models.models_response import ModelsResponse
 from ce_rise_hex_core_sdk.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to http://localhost
+# Defining the host is optional and defaults to http://localhost:8080
 # See configuration.py for a list of all supported configuration parameters.
 configuration = ce_rise_hex_core_sdk.Configuration(
-    host = "http://localhost"
+    host = "http://localhost:8080"
 )
 
 
