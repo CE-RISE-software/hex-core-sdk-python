@@ -1,15 +1,31 @@
-# CE-RISE Software Projects Template
+# CE-RISE Python Software Development Kit for Hexagonal Core Service
 
 [![DOI](https://zenodo.org/badge/DOI/TOBEOBTAINED.svg)](https://doi.org/TOBEOBTAINED)
 
-A repository to provide a template for a faster setup of open science and open source software projects within the CE-RISE project.
+A Python SDK for the CE-RISE Hex Core Service: https://codeberg.org/CE-RISE-software/hex-core-service.
 
 ---
 
-## What this repository contains
-- Actions in `.forgejo/workflows` for Codeberg runners to
-- Actions in `.github/workflows` for GitHub runners in mirror to tag releases and initiate archiving on Zenodo through the GitHub / Zenodo integration.
-- This README should be expanded as needed. Sections `License`, `Contributing`, and the footer should be retained but updated as needed.
+## Package
+
+...
+
+## Install
+
+```bash
+pip install ...
+```
+
+## Use the SDK
+
+```python
+..
+```
+
+## API Documentation
+
+- ???
+- Generated documentation website: https://ce-rise-software.codeberg.page/hex-core-sdk-python/
 
 
 ## License
@@ -18,7 +34,7 @@ Licensed under the [European Union Public Licence v1.2 (EUPL-1.2)](LICENSE).
 
 ## Contributing
 
-This repository is maintained on [Codeberg](https://codeberg.org/CE-RISE-software/template-software) — the canonical source of truth. The GitHub repository is a read mirror used for release archival and Zenodo integration. Issues and pull requests should be opened on Codeberg.
+This repository is maintained on [Codeberg](https://codeberg.org/CE-RISE-software/hex-core-sdk-python) — the canonical source of truth. The GitHub repository is a read mirror used for release archival and Zenodo integration. Issues and pull requests should be opened on Codeberg.
 
 ---
 

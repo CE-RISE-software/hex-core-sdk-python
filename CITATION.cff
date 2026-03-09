@@ -1,27 +1,26 @@
 cff-version: 1.2.0
-title: Project template for software developed within the CE-RISE Horizon Europe project
+title: CE-RISE Hex Core Python SDK
 message: >-
-  v0.0.1 - Initial sketch of project template.
+  If you use this SDK, please cite it using the metadata from this file.
 type: software
-doi: xxx_to_be_obtained_xxx
+version: 0.0.1
 authors:
   - given-names: Riccardo
     family-names: Boero
     email: ribo@nilu.no
     orcid: 'https://orcid.org/0000-0002-7468-9096'
     affiliation: NILU
-identifiers:
-  - type: doi
-    value: xxx_to_be_obtained_xxx
-    description: This DOI represents all software versions.
-repository-code: 'https://codeberg.org/CE-RISE-software/template-software'
-url: 'https://ce-rise-software.codeberg.page/template-software/'
+repository-code: 'https://codeberg.org/CE-RISE-software/hex-core-sdk-python'
+url: 'https://pkg.go.dev/github.com/CE-RISE-software/hex-core-sdk-python'
 abstract: >-
-  Project template for data models developed within the CE-RISE Horizon Europe project.
+  OpenAPI-generated Python SDK for the CE-RISE Hex Core microservice API, providing
+  typed clients for admin, discovery, and model operations in step with the
+  microservice release lifecycle.
 keywords:
   - CE-RISE
-  - Open Source
-  - Open Science
-  - Digital Product Passport
-  - Digital Material Passport
-license: CC-BY-NC-4.0
+  - Python
+  - SDK
+  - OpenAPI
+  - Microservice
+  - Hex Core
+license: EUPL-1.2

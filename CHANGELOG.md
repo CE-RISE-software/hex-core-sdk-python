@@ -1,10 +1,9 @@
 # Changelog
 
-All notable changes to the CE-RISE Software XXXX project will be documented in this file.
+All notable changes to the CE-RISE Hex Core Python SDK project will be documented in this file.
 
-## [0.0.1] - unreleased
+Ground truth for service changes:
+https://codeberg.org/CE-RISE-software/hex-core-service/src/branch/main/CHANGELOG.md
 
-### Added
-- Initial project structure and repository setup from template: https://ce-rise-software.codeberg.page/template-software/
-- Initial data model structure for XXXX
-- Artifacts built and deployed to pages
+This SDK tracks and supports the Hex Core service versions documented there and
+is aligned with that release lifecycle.

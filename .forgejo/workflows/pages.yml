@@ -1,0 +1,67 @@
+name: Publish Docs to Codeberg Pages
+
+on:
+    push:
+        branches:
+            - main
+    workflow_dispatch:
+
+jobs:
+    pages:
+        runs-on: codeberg-small
+
+        steps:
+            - name: Checkout
+              uses: https://github.com/actions/checkout@v4
+              with:
+                  fetch-depth: 0
+
+            - name: Install mdBook
+              run: |
+                  curl -sSL https://github.com/rust-lang/mdBook/releases/download/v0.5.2/mdbook-v0.5.2-x86_64-unknown-linux-gnu.tar.gz \
+                    | tar -xz --directory /usr/local/bin
+
+            - name: Build static site from generated docs
+              run: |
+                  set -eu
+                  rm -rf .ci-book
+                  mkdir -p .ci-book/src
+                  cp docs/*.md .ci-book/src/
+
+                  cat > .ci-book/book.toml <<'EOF'
+                  [book]
+                  title = "hex-core-sdk-go API Docs"
+                  language = "en"
+                  src = "src"
+                  EOF
+
+                  {
+                    echo "# Summary"
+                    echo ""
+                    for f in $(ls .ci-book/src/*.md | sed 's#.ci-book/src/##' | sort); do
+                      title=$(basename "$f" .md)
+                      echo "- [$title]($f)"
+                    done
+                  } > .ci-book/src/SUMMARY.md
+
+                  mdbook build .ci-book
+
+            - name: Configure git
+              run: |
+                  git config --global user.email "ci@noreply.codeberg.org"
+                  git config --global user.name "Forgejo CI"
+
+            - name: Deploy generated site to pages branch
+              env:
+                  FORGEJO_TOKEN: ${{ secrets.FORGEJO_TOKEN }}
+              run: |
+                  set -eu
+                  cd .ci-book/book
+                  touch .nojekyll
+                  git init
+                  git checkout -b pages
+                  git add -A
+                  git commit -m "docs: publish ${CI_COMMIT_SHA:-unknown}"
+                  git push --force \
+                    "https://${GITHUB_ACTOR}:${FORGEJO_TOKEN}@codeberg.org/${GITHUB_REPOSITORY}.git" \
+                    pages:pages
