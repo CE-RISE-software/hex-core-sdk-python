@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "ce_rise_hex_core_sdk"
-version = "0.0.0.dev120"
+version = "0.0.1"
 description = "CE-RISE Hexagonal Core Service API"
 authors = ["OpenAPI Generator Community <team@openapitools.org>"]
 license = "NoLicense"
