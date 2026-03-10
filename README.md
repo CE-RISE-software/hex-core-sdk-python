@@ -1,5 +1,6 @@
 # CE-RISE Python SDK for Hexagonal Core Service
 
+[![PyPI - Version](https://img.shields.io/pypi/v/ce-rise-hex-core-sdk)](https://pypi.org/project/ce-rise-hex-core-sdk/)
 [![DOI](https://zenodo.org/badge/DOI/TOBEOBTAINED.svg)](https://doi.org/TOBEOBTAINED)
 
 Python SDK for the CE-RISE Hex Core Service:
@@ -16,7 +17,7 @@ pip install ce-rise-hex-core-sdk
 Install a specific version:
 
 ```bash
-pip install "ce-rise-hex-core-sdk==0.0.0.dev120"
+pip install "ce-rise-hex-core-sdk==0.0.1"
 ```
 
 ## Quickstart
