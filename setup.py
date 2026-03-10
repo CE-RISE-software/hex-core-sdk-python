@@ -1,7 +1,7 @@
 # coding: utf-8
 
 """
-    CE-RISE Hexagonal Core Service API
+    CE-RISE Hex Core Service API
 
     Public and admin API for validating, creating, and querying records against versioned CE-RISE model artifacts.
 
@@ -33,11 +33,11 @@ REQUIRES = [
 setup(
     name=NAME,
     version=VERSION,
-    description="CE-RISE Hexagonal Core Service API",
+    description="CE-RISE Hex Core Service API",
     author="OpenAPI Generator community",
     author_email="team@openapitools.org",
     url="",
-    keywords=["OpenAPI", "OpenAPI-Generator", "CE-RISE Hexagonal Core Service API"],
+    keywords=["OpenAPI", "OpenAPI-Generator", "CE-RISE Hex Core Service API"],
     install_requires=REQUIRES,
     packages=find_packages(exclude=["test", "tests"]),
     include_package_data=True,
