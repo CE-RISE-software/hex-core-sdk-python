@@ -1,9 +1,9 @@
-# CE-RISE Python SDK for Hexagonal Core Service
+# CE-RISE Python Software Development Kit for Hexagonal Core Service
 
 [![PyPI - Version](https://img.shields.io/pypi/v/ce-rise-hex-core-sdk)](https://pypi.org/project/ce-rise-hex-core-sdk/)
 [![DOI](https://zenodo.org/badge/DOI/TOBEOBTAINED.svg)](https://doi.org/TOBEOBTAINED)
 
-Python SDK for the CE-RISE Hex Core Service:
+A Python SDK for the CE-RISE Hex Core Service:
 https://codeberg.org/CE-RISE-software/hex-core-service
 
 ## Install
