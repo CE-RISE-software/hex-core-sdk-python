@@ -6,6 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**health**](AdminApi.md#health) | **GET** /admin/health | Liveness probe
 [**metrics**](AdminApi.md#metrics) | **GET** /admin/metrics | Prometheus metrics
+[**models_count**](AdminApi.md#models_count) | **GET** /admin/models/count | Current model count
 [**ready**](AdminApi.md#ready) | **GET** /admin/ready | Readiness probe
 [**status**](AdminApi.md#status) | **GET** /admin/status | Runtime status
 [**version**](AdminApi.md#version) | **GET** /admin/version | Service and OpenAPI version
@@ -136,6 +137,70 @@ No authorization required
 |-------------|-------------|------------------|
 **200** | Metrics text returned. |  -  |
 **404** | Metrics endpoint disabled. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **models_count**
+> ModelCountResponse models_count()
+
+Current model count
+
+Returns the number of model/version entries currently loaded in the active registry index.
+
+### Example
+
+
+```python
+import ce_rise_hex_core_sdk
+from ce_rise_hex_core_sdk.models.model_count_response import ModelCountResponse
+from ce_rise_hex_core_sdk.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost:8080
+# See configuration.py for a list of all supported configuration parameters.
+configuration = ce_rise_hex_core_sdk.Configuration(
+    host = "http://localhost:8080"
+)
+
+
+# Enter a context with an instance of the API client
+with ce_rise_hex_core_sdk.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = ce_rise_hex_core_sdk.AdminApi(api_client)
+
+    try:
+        # Current model count
+        api_response = api_instance.models_count()
+        print("The response of AdminApi->models_count:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling AdminApi->models_count: %s\n" % e)
+```
+
+
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**ModelCountResponse**](ModelCountResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Model count returned. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

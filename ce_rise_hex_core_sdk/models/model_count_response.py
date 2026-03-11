@@ -17,20 +17,18 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List
+from typing_extensions import Annotated
 from typing import Optional, Set
 from typing_extensions import Self
 
-class Record(BaseModel):
+class ModelCountResponse(BaseModel):
     """
-    Record
+    ModelCountResponse
     """ # noqa: E501
-    id: StrictStr = Field(description="Record identifier returned by the store adapter.")
-    model: StrictStr = Field(description="Model identifier used for this record.")
-    version: StrictStr = Field(description="Model version used for this record.")
-    payload: Dict[str, Any] = Field(description="Opaque business payload routed to the IO adapter.")
-    __properties: ClassVar[List[str]] = ["id", "model", "version", "payload"]
+    models_count: Annotated[int, Field(strict=True, ge=0)] = Field(description="Number of models currently indexed by the registry.")
+    __properties: ClassVar[List[str]] = ["models_count"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -50,7 +48,7 @@ class Record(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of Record from a JSON string"""
+        """Create an instance of ModelCountResponse from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -75,7 +73,7 @@ class Record(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of Record from a dict"""
+        """Create an instance of ModelCountResponse from a dict"""
         if obj is None:
             return None
 
@@ -83,10 +81,7 @@ class Record(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "id": obj.get("id"),
-            "model": obj.get("model"),
-            "version": obj.get("version"),
-            "payload": obj.get("payload")
+            "models_count": obj.get("models_count")
         })
         return _obj
 
