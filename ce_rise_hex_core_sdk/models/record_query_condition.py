@@ -17,18 +17,26 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict
-from typing import Any, ClassVar, Dict, List
-from ce_rise_hex_core_sdk.models.record_query_filter import RecordQueryFilter
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
+from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
 
-class QueryRequest(BaseModel):
+class RecordQueryCondition(BaseModel):
     """
-    QueryRequest
+    RecordQueryCondition
     """ # noqa: E501
-    filter: RecordQueryFilter
-    __properties: ClassVar[List[str]] = ["filter"]
+    var_field: StrictStr = Field(description="Field path such as `id` or `payload.record_scope`.", alias="field")
+    op: StrictStr = Field(description="Comparison operator.")
+    value: Optional[Any] = Field(description="Operand value. For `in` this must be an array. For `exists` this should be boolean.")
+    __properties: ClassVar[List[str]] = ["field", "op", "value"]
+
+    @field_validator('op')
+    def op_validate_enum(cls, value):
+        """Validates the enum"""
+        if value not in set(['eq', 'ne', 'in', 'contains', 'exists', 'gt', 'gte', 'lt', 'lte']):
+            raise ValueError("must be one of enum values ('eq', 'ne', 'in', 'contains', 'exists', 'gt', 'gte', 'lt', 'lte')")
+        return value
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -48,7 +56,7 @@ class QueryRequest(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of QueryRequest from a JSON string"""
+        """Create an instance of RecordQueryCondition from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -69,14 +77,16 @@ class QueryRequest(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of filter
-        if self.filter:
-            _dict['filter'] = self.filter.to_dict()
+        # set to None if value (nullable) is None
+        # and model_fields_set contains the field
+        if self.value is None and "value" in self.model_fields_set:
+            _dict['value'] = None
+
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of QueryRequest from a dict"""
+        """Create an instance of RecordQueryCondition from a dict"""
         if obj is None:
             return None
 
@@ -84,7 +94,9 @@ class QueryRequest(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "filter": RecordQueryFilter.from_dict(obj["filter"]) if obj.get("filter") is not None else None
+            "field": obj.get("field"),
+            "op": obj.get("op"),
+            "value": obj.get("value")
         })
         return _obj
 

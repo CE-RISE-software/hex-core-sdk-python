@@ -17,18 +17,23 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict
-from typing import Any, ClassVar, Dict, List
-from ce_rise_hex_core_sdk.models.record_query_filter import RecordQueryFilter
+from pydantic import BaseModel, ConfigDict, Field
+from typing import Any, ClassVar, Dict, List, Optional
+from typing_extensions import Annotated
+from ce_rise_hex_core_sdk.models.record_query_condition import RecordQueryCondition
+from ce_rise_hex_core_sdk.models.record_query_sort import RecordQuerySort
 from typing import Optional, Set
 from typing_extensions import Self
 
-class QueryRequest(BaseModel):
+class RecordQueryFilter(BaseModel):
     """
-    QueryRequest
+    Canonical backend query dialect shared across record store adapters.
     """ # noqa: E501
-    filter: RecordQueryFilter
-    __properties: ClassVar[List[str]] = ["filter"]
+    where: List[RecordQueryCondition] = Field(description="AND-only list of query predicates.")
+    sort: Optional[List[RecordQuerySort]] = Field(default=None, description="Optional list of sort directives applied in order.")
+    limit: Optional[Annotated[int, Field(strict=True, ge=0)]] = Field(default=None, description="Maximum number of records to return.")
+    offset: Optional[Annotated[int, Field(strict=True, ge=0)]] = Field(default=None, description="Zero-based row offset for pagination.")
+    __properties: ClassVar[List[str]] = ["where", "sort", "limit", "offset"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -48,7 +53,7 @@ class QueryRequest(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of QueryRequest from a JSON string"""
+        """Create an instance of RecordQueryFilter from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -69,14 +74,25 @@ class QueryRequest(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of filter
-        if self.filter:
-            _dict['filter'] = self.filter.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of each item in where (list)
+        _items = []
+        if self.where:
+            for _item_where in self.where:
+                if _item_where:
+                    _items.append(_item_where.to_dict())
+            _dict['where'] = _items
+        # override the default output from pydantic by calling `to_dict()` of each item in sort (list)
+        _items = []
+        if self.sort:
+            for _item_sort in self.sort:
+                if _item_sort:
+                    _items.append(_item_sort.to_dict())
+            _dict['sort'] = _items
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of QueryRequest from a dict"""
+        """Create an instance of RecordQueryFilter from a dict"""
         if obj is None:
             return None
 
@@ -84,7 +100,10 @@ class QueryRequest(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "filter": RecordQueryFilter.from_dict(obj["filter"]) if obj.get("filter") is not None else None
+            "where": [RecordQueryCondition.from_dict(_item) for _item in obj["where"]] if obj.get("where") is not None else None,
+            "sort": [RecordQuerySort.from_dict(_item) for _item in obj["sort"]] if obj.get("sort") is not None else None,
+            "limit": obj.get("limit"),
+            "offset": obj.get("offset")
         })
         return _obj
 

@@ -17,18 +17,25 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List
-from ce_rise_hex_core_sdk.models.record_query_filter import RecordQueryFilter
 from typing import Optional, Set
 from typing_extensions import Self
 
-class QueryRequest(BaseModel):
+class RecordQuerySort(BaseModel):
     """
-    QueryRequest
+    RecordQuerySort
     """ # noqa: E501
-    filter: RecordQueryFilter
-    __properties: ClassVar[List[str]] = ["filter"]
+    var_field: StrictStr = Field(description="Sortable field path such as `created_at` or `payload.record_scope`.", alias="field")
+    direction: StrictStr = Field(description="Sort direction.")
+    __properties: ClassVar[List[str]] = ["field", "direction"]
+
+    @field_validator('direction')
+    def direction_validate_enum(cls, value):
+        """Validates the enum"""
+        if value not in set(['asc', 'desc']):
+            raise ValueError("must be one of enum values ('asc', 'desc')")
+        return value
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -48,7 +55,7 @@ class QueryRequest(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of QueryRequest from a JSON string"""
+        """Create an instance of RecordQuerySort from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -69,14 +76,11 @@ class QueryRequest(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of filter
-        if self.filter:
-            _dict['filter'] = self.filter.to_dict()
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of QueryRequest from a dict"""
+        """Create an instance of RecordQuerySort from a dict"""
         if obj is None:
             return None
 
@@ -84,7 +88,8 @@ class QueryRequest(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "filter": RecordQueryFilter.from_dict(obj["filter"]) if obj.get("filter") is not None else None
+            "field": obj.get("field"),
+            "direction": obj.get("direction")
         })
         return _obj
 

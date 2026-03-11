@@ -24,6 +24,9 @@ from ce_rise_hex_core_sdk.models.query_request import QueryRequest
 from ce_rise_hex_core_sdk.models.query_response import QueryResponse
 from ce_rise_hex_core_sdk.models.ready_response import ReadyResponse
 from ce_rise_hex_core_sdk.models.record import Record
+from ce_rise_hex_core_sdk.models.record_query_condition import RecordQueryCondition
+from ce_rise_hex_core_sdk.models.record_query_filter import RecordQueryFilter
+from ce_rise_hex_core_sdk.models.record_query_sort import RecordQuerySort
 from ce_rise_hex_core_sdk.models.validate_request import ValidateRequest
 from ce_rise_hex_core_sdk.models.validation_report import ValidationReport
 from ce_rise_hex_core_sdk.models.validation_result import ValidationResult
