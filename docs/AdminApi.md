@@ -8,6 +8,7 @@ Method | HTTP request | Description
 [**metrics**](AdminApi.md#metrics) | **GET** /admin/metrics | Prometheus metrics
 [**ready**](AdminApi.md#ready) | **GET** /admin/ready | Readiness probe
 [**status**](AdminApi.md#status) | **GET** /admin/status | Runtime status
+[**version**](AdminApi.md#version) | **GET** /admin/version | Service and OpenAPI version
 
 
 # **health**
@@ -273,6 +274,70 @@ This endpoint does not need any parameter.
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Status payload returned. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **version**
+> VersionResponse version()
+
+Service and OpenAPI version
+
+Returns running service version and bundled OpenAPI specification version.
+
+### Example
+
+
+```python
+import ce_rise_hex_core_sdk
+from ce_rise_hex_core_sdk.models.version_response import VersionResponse
+from ce_rise_hex_core_sdk.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to http://localhost:8080
+# See configuration.py for a list of all supported configuration parameters.
+configuration = ce_rise_hex_core_sdk.Configuration(
+    host = "http://localhost:8080"
+)
+
+
+# Enter a context with an instance of the API client
+with ce_rise_hex_core_sdk.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = ce_rise_hex_core_sdk.AdminApi(api_client)
+
+    try:
+        # Service and OpenAPI version
+        api_response = api_instance.version()
+        print("The response of AdminApi->version:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling AdminApi->version: %s\n" % e)
+```
+
+
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**VersionResponse**](VersionResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Version payload returned. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

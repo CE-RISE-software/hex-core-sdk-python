@@ -22,12 +22,14 @@ from typing import Any, ClassVar, Dict, List
 from typing import Optional, Set
 from typing_extensions import Self
 
-class ReadyResponse(BaseModel):
+class VersionResponse(BaseModel):
     """
-    ReadyResponse
+    VersionResponse
     """ # noqa: E501
-    status: StrictStr = Field(description="Readiness status string.")
-    __properties: ClassVar[List[str]] = ["status"]
+    service: StrictStr = Field(description="Stable service identifier.")
+    service_version: StrictStr = Field(description="Running service build version from crate metadata.")
+    openapi_version: StrictStr = Field(description="Bundled OpenAPI document version from info.version.")
+    __properties: ClassVar[List[str]] = ["service", "service_version", "openapi_version"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -47,7 +49,7 @@ class ReadyResponse(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of ReadyResponse from a JSON string"""
+        """Create an instance of VersionResponse from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -72,7 +74,7 @@ class ReadyResponse(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of ReadyResponse from a dict"""
+        """Create an instance of VersionResponse from a dict"""
         if obj is None:
             return None
 
@@ -80,7 +82,9 @@ class ReadyResponse(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "status": obj.get("status")
+            "service": obj.get("service"),
+            "service_version": obj.get("service_version"),
+            "openapi_version": obj.get("openapi_version")
         })
         return _obj
 
