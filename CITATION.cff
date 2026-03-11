@@ -4,7 +4,7 @@ message: >-
   If you use this SDK, please cite it using the metadata from this file.
 type: software
 doi: 10.5281/zenodo.18953434
-version: 0.0.4
+version: 0.0.5
 authors:
   - given-names: Riccardo
     family-names: Boero
