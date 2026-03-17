@@ -17,18 +17,18 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict
+from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List
-from ce_rise_hex_core_sdk.models.record_query_filter import RecordQueryFilter
+from typing_extensions import Annotated
 from typing import Optional, Set
 from typing_extensions import Self
 
-class QueryRequest(BaseModel):
+class ModelCountResponse(BaseModel):
     """
-    QueryRequest
+    ModelCountResponse
     """ # noqa: E501
-    filter: RecordQueryFilter
-    __properties: ClassVar[List[str]] = ["filter"]
+    models_count: Annotated[int, Field(strict=True, ge=0)] = Field(description="Number of models currently indexed by the registry.")
+    __properties: ClassVar[List[str]] = ["models_count"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -48,7 +48,7 @@ class QueryRequest(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of QueryRequest from a JSON string"""
+        """Create an instance of ModelCountResponse from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -69,14 +69,11 @@ class QueryRequest(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of filter
-        if self.filter:
-            _dict['filter'] = self.filter.to_dict()
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of QueryRequest from a dict"""
+        """Create an instance of ModelCountResponse from a dict"""
         if obj is None:
             return None
 
@@ -84,7 +81,7 @@ class QueryRequest(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "filter": RecordQueryFilter.from_dict(obj["filter"]) if obj.get("filter") is not None else None
+            "models_count": obj.get("models_count")
         })
         return _obj
 

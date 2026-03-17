@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**filter** | **Dict[str, object]** | Adapter-specific filter object for query execution. | 
+**filter** | [**RecordQueryFilter**](RecordQueryFilter.md) |  | 
 
 ## Example
 
